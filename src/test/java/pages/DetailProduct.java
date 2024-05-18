@@ -26,6 +26,6 @@ public class DetailProduct {
         return driver.findElement(buyButton).isDisplayed();
     }
 
-
+    
 
 }
