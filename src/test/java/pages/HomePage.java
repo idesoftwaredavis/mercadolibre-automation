@@ -1,11 +1,8 @@
 package pages;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 
@@ -15,6 +12,7 @@ public class HomePage{
     String categoryAux="//ul[@class='nav-menu-list']/li[@class='nav-menu-item'][1]";
     private By category = By.xpath(categoryAux);
 
+    // TODO: Revisar parametro
     String subCategoryAux = "";
     private By subCategories = By.xpath("//ul[@class='nav-categs-departments']//li[normalize-space()='Supermercado']");
     
@@ -24,6 +22,7 @@ public class HomePage{
 
     private By laterBtn = By.xpath("//div[@class='onboarding-cp']//button[2]");
 
+    private By carouselCategory = By.xpath("//section[@class='main-slider']");
     
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -50,6 +49,12 @@ public class HomePage{
         driver.findElement(laterBtn).click();
     }
 
+    public void initPage(String url){
+        goToPage(url);
+        selectCountry();
+        clickMoreLater();
+    }
+
      //Selección de categoría
     public void selectCategory(String textCategory){
         //categoryAux = String.format(categoryAux,textCategory);
@@ -61,8 +66,6 @@ public class HomePage{
 
      //Selección de subcategoría
     public void SelectSubCategory(String textSubCategory){
-        
-        
         driver.findElement(subCategories).click();
 
         // WebElement elementToHover= driver.findElement(subCategories);
@@ -70,8 +73,14 @@ public class HomePage{
         // WebElement elemento = elementos.get(1);
 
         // elemento.click();
-
     }
+
+    // Validar selección correcta del menú categoria
+    public Boolean carouselIsDisplayed(){
+        return driver.findElement(carouselCategory).isDisplayed();
+    }
+
+    
 
 
     

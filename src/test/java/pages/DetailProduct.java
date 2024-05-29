@@ -10,22 +10,14 @@ public class DetailProduct {
     
     private By titleDetailProduct = By.xpath("//div[@class='ui-pdp-header']//h1");
     
-    private By buyButton = By.xpath("//div[@class='ui-pdp-actions__container']//child::button[1]");
-
     private WebDriver driver;
 
     public DetailProduct(WebDriver driver){
         this.driver = driver;
     }
 
-    public String getTitleDetailProduct(){
-        return driver.findElement(titleDetailProduct).getText().toString();
+    public Boolean getTitleDetailProduct(){
+        return driver.findElement(titleDetailProduct).isDisplayed();
     }
-
-    public Boolean buyButtonDisplayed(){
-        return driver.findElement(buyButton).isDisplayed();
-    }
-
-    
 
 }

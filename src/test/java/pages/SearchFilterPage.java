@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class SearchFilterPage {
     private WebDriver driver;
 
-    private By filterDelivery = By.xpath("//div[@class='ui-search-filter-dl'][1]//button");
+    private By filterDelivery = By.xpath("//div[@class='ui-search-filter-dl'][2]//button");
     
     private By listFreeDelivery = By.xpath("//ol[@class='ui-search-layout ui-search-layout--stack shops__layout']//child::li//span[text()='Envío gratis']");
     
@@ -33,9 +33,10 @@ public class SearchFilterPage {
     public Boolean deliveryDetected(){
         Boolean delivery = true;
         List<WebElement> listDeliverys = driver.findElements(listFreeDelivery);
-
         for(WebElement deli : listDeliverys){
-            delivery = (deli.getText() == "Envío gratis") ? delivery : false;
+            System.out.println("DENTRO DEL BUCLE ====> "+deli.getText());
+            delivery = (deli.getText().contains("Envío gratis")) ? true : false;
+            System.out.println("Respuesta variable delivery =====> " + delivery);
         }
         return delivery;
     }
